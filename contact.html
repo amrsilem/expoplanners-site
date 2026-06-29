@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Expo Planners</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        .contact-info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+        }
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: #0d6efd;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .form-control, .form-select {
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+        .office-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #0d6efd;
+        }
+        .bbb-badge {
+            background: #2E3192;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .bbb-badge i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.png" alt="Expo Planners" height="40" class="d-inline-block align-text-top me-2">
+                Expo Planners
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="display-4">Contact Us</h1>
+            <p class="lead">We're here to help plan your perfect trip</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p class="text-muted mb-2">We're available 24/7</p>
+                        <p class="mb-0"><strong>+(1) 888-929-8117</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p class="text-muted mb-2">We'll respond within 24 hours</p>
+                        <p class="mb-0"><strong>E-Support@expoplanners.net</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p class="text-muted mb-2">Our office location</p>
+                        <p class="mb-0"><strong>5608 Bergenline Ave<br>West New York</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BBB Rating -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="bbb-badge">
+                        <i class="fas fa-award"></i>
+                        <h3>BBB Accredited Business</h3>
+                        <p class="mb-0">We're proud to be a Better Business Bureau accredited business with an A+ rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Office Info -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Contact Form -->
+                <div class="col-lg-7">
+                    <div class="contact-form">
+                        <h2 class="mb-4">Send Us a Message</h2>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="First Name *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Last Name *" required>
+                                </div>
+                            </div>
+                            <input type="email" class="form-control" placeholder="Email Address *" required>
+                            <input type="tel" class="form-control" placeholder="Phone Number">
+                            <select class="form-select">
+                                <option selected>I'm interested in...</option>
+                                <option>Hotel Booking</option>
+                                <option>Flight Reservations</option>
+                                <option>Tour Packages</option>
+                                <option>Corporate Travel</option>
+                                <option>Other</option>
+                            </select>
+                            <textarea class="form-control" rows="5" placeholder="Your Message *" required></textarea>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Office Information -->
+                <div class="col-lg-5">
+                    <h2 class="mb-4">Our Offices</h2>
