@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Destinations - Expo Planners</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        .destination-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 400px;
+        }
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+        .destination-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px;
+            color: white;
+        }
+        .destination-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .price-tag {
+            background: #0d6efd;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        .filter-buttons {
+            margin-bottom: 30px;
+        }
+        .filter-buttons .btn {
+            margin: 5px;
+        }
+        .search-destination {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        .popular-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.png" alt="Expo Planners" height="40" class="d-inline-block align-text-top me-2">
+                Expo Planners
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="display-4">Popular Destinations</h1>
+            <p class="lead">Discover amazing places at exclusive deals</p>
+        </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="py-5">
+        <div class="container">
+            <div class="search-destination">
+                <h3 class="text-center mb-4">Find Your Perfect Destination</h3>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-lg" placeholder="Where do you want to go?">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select form-select-lg">
+                            <option selected>All Regions</option>
+                            <option>Europe</option>
+                            <option>Middle East</option>
+                            <option>Asia</option>
+                            <option>Americas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select form-select-lg">
+                            <option selected>Any Budget</option>
+                            <option>Budget ($500-$1000)</option>
+                            <option>Moderate ($1000-$2500)</option>
+                            <option>Luxury ($2500+)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-buttons text-center">
+                <button class="btn btn-primary active">All Destinations</button>
+                <button class="btn btn-outline-primary">Europe</button>
+                <button class="btn btn-outline-primary">Middle East</button>
+                <button class="btn btn-outline-primary">Asia</button>
+                <button class="btn btn-outline-primary">Americas</button>
+                <button class="btn btn-outline-primary">Africa</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Paris -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800" alt="Paris">
+                        <div class="destination-overlay">
+                            <span class="popular-badge">POPULAR</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white ms-2">(2,458 reviews)</span>
+                            </div>
+                            <h3>Paris, France</h3>
+                            <p>The City of Light awaits your visit</p>
+                            <div class="price-tag">From $150/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dubai -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea936a7d40b?w=800" alt="Dubai">
+                        <div class="destination-overlay">
+                            <span class="popular-badge">TRENDING</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white ms-2">(1,892 reviews)</span>
+                            </div>
+                            <h3>Dubai, UAE</h3>
+                            <p>Luxury and modern architecture</p>
+                            <div class="price-tag">From $200/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tokyo -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800" alt="Tokyo">
+                        <div class="destination-overlay">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white ms-2">(1,654 reviews)</span>
+                            </div>
+                            <h3>Tokyo, Japan</h3>
+                            <p>Where tradition meets innovation</p>
+                            <div class="price-tag">From $180/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New York -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4a0e62e6e9?w=800" alt="New York">
+                        <div class="destination-overlay">
+                            <span class="popular-badge">POPULAR</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white ms-2">(3,127 reviews)</span>
+                            </div>
+                            <h3>New York, USA</h3>
+                            <p>The city that never sleeps</p>
+                            <div class="price-tag">From $220/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- London -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800" alt="London">
+                        <div class="destination-overlay">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white ms-2">(2,341 reviews)</span>
+                            </div>
+                            <h3>London, UK</h3>
+                            <p>Royal heritage and modern culture</p>
+                            <div class="price-tag">From $190/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barcelona -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1583422409516-2895a77c81b0?w=800" alt="Barcelona">
+                        <div class="destination-overlay">
+                            <span class="popular-badge">BEST VALUE</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white ms-2">(1,523 reviews)</span>
+                            </div>
+                            <h3>Barcelona, Spain</h3>
+                            <p>Art, architecture, and Mediterranean vibes</p>
+                            <div class="price-tag">From $140/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bangkok -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=800" alt="Bangkok">
+                        <div class="destination-overlay">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white ms-2">(1,876 reviews)</span>
+                            </div>
+                            <h3>Bangkok, Thailand</h3>
+                            <p>Exotic culture and amazing food</p>
+                            <div class="price-tag">From $80/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rome -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800" alt="Rome">
+                        <div class="destination-overlay">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white ms-2">(2,089 reviews)</span>
+                            </div>
+                            <h3>Rome, Italy</h3>
+                            <p>Ancient history and Italian cuisine</p>
+                            <div class="price-tag">From $160/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Istanbul -->
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1527838832700-50592524075f?w=800" alt="Istanbul">
+                        <div class="destination-overlay">
+                            <span class="popular-badge">GREAT DEAL</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white ms-2">(1,432 reviews)</span>
+                            </div>
+                            <h3>Istanbul, Turkey</h3>
+                            <p>Where East meets West</p>
+                            <div class="price-tag">From $110/night</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="mb-4">Can't Find What You're Looking For?</h2>
+            <p class="lead mb-4">We offer customized travel packages to over 200 destinations worldwide</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Contact Us for Custom Packages</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; <span id="year"></span> Expo Planners. All rights reserved.</p>
+            <p class="mb-0"><small>Smart Travel. Real Savings.</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
